@@ -74,3 +74,9 @@ tags
 
 !/thirdparty
 !/thirdparty/**
+
+cmake-build-debug/
+
+.idea/
+
+thirdparty/tensorflow/

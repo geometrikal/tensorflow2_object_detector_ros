@@ -8,12 +8,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  cmake_modules
-  std_msgs
-  roscpp
-  cv_bridge
-  image_transport
-)
+        cmake_modules
+        std_msgs
+        roscpp
+        cv_bridge
+        image_transport
+        )
 
 ## System dependencies are found with CMake's conventions
 find_package(OpenCV REQUIRED)
@@ -105,9 +105,9 @@ find_package(Eigen REQUIRED)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  INCLUDE_DIRS 
-  CATKIN_DEPENDS std_msgs roscpp image_transport 
-#  DEPENDS system_lib
+        INCLUDE_DIRS
+        CATKIN_DEPENDS std_msgs roscpp image_transport
+        #  DEPENDS system_lib
 )
 
 ###########
@@ -118,20 +118,20 @@ catkin_package(
 ## Your package locations should be listed before other locations
 # include_directories(include)
 include_directories(
-  include
-  thirdparty/tensorflow/include
-  ${catkin_INCLUDE_DIRS}
-  ${Eigen_INCLUDE_DIRS}
-  ${OpenCV_INCLUDE_DIRS}
+        include
+        thirdparty/tensorflow/include
+        ${catkin_INCLUDE_DIRS}
+        ${Eigen_INCLUDE_DIRS}
+        ${OpenCV_INCLUDE_DIRS}
 )
 
 link_directories(thirdparty/tensorflow/lib)
 
 ## Declare a C++ library
 add_library(tensorflow_object_detector_lib
-  src/tensorflow_object_detector.cpp 
-  src/tensorflow_util.cpp
-)
+        src/tensorflow_object_detector.cpp
+        src/tensorflow_util.cpp
+        )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -147,9 +147,9 @@ add_dependencies(tensorflow_object_detector tensorflow_object_detector_lib)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(tensorflow_object_detector
-  ${catkin_LIBRARIES}
-  ${OpenCV_LIBS}
-  tensorflow_object_detector_lib
-  tensorflow
-)
+        ${catkin_LIBRARIES}
+        ${OpenCV_LIBS}
+        tensorflow_object_detector_lib
+        tensorflow
+        )
 

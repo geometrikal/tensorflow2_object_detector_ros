@@ -19,7 +19,7 @@ TensorFlowObjectDetectorNodeCore::TensorFlowObjectDetectorNodeCore(const ros::No
     std::string graph_path, labels_path;
     nh_.param<std::string>("graph_path", graph_path, "");
     nh_.param<std::string>("labels_path", labels_path, "");
-    nh_.param<double>("score_threshold", score_threshold_, 0.8);
+    nh_.param<double>("score_threshold", score_threshold_, 0.5);
     nh_.param<bool>("always_output_image", always_output_image_, false);
 
     //initialize tensorflow
@@ -85,7 +85,6 @@ void TensorFlowObjectDetectorNodeCore::imageCallback(const sensor_msgs::Image::C
                     std::min(static_cast<int>(topleft.x() * width), 640 - 100),
                     std::max(static_cast<int>(topleft.y() * height - 10), 20)),
                 cv::FONT_HERSHEY_PLAIN, 1.0, color);
-
         }
 
         if (always_output_image_ || results.size() > 0)

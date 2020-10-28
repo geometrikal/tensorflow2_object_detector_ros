@@ -52,9 +52,44 @@ std::unique_ptr<TF_Session> TensorFlowUtil::createSession(TF_Graph* graph, const
     return ptr;
 }
 
+std::unique_ptr<TF_Session> TensorFlowUtil::loadSessionFromSavedModel(
+        const TF_SessionOptions* session_options,
+        const TF_Buffer* run_options,
+        const char* saved_model_dir,
+        const char* const* tags,
+        int ntags,
+        TF_Graph* graph) {
+    auto status = TensorFlowUtil::createStatus();
+    auto ptr = std::unique_ptr<TF_Session>(
+            TF_LoadSessionFromSavedModel(session_options,
+                                         run_options,
+                                         saved_model_dir,
+                                         tags,
+                                         ntags,
+                                         graph,
+                                         NULL,
+                                         status.get()));
+    if(TF_GetCode(status.get()) == TF_OK)
+    {
+        printf("TF_LoadSessionFromSavedModel OK\n");
+    }
+    else
+    {
+        printf("%s", TF_Message(status.get()));
+    }
+
+    return ptr;
+}
+
 std::unique_ptr<TF_SessionOptions> TensorFlowUtil::createSessionOptions()
 {
     return std::unique_ptr<TF_SessionOptions>(TF_NewSessionOptions());
+}
+
+std::unique_ptr<TF_Buffer> TensorFlowUtil::createRunOptions()
+{
+    TF_Buffer* run_opts = NULL;
+    return std::unique_ptr<TF_Buffer>(run_opts);
 }
 
 std::unique_ptr<TF_Graph> TensorFlowUtil::createGraph()

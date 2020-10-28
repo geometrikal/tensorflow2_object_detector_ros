@@ -19,6 +19,16 @@ public:
     static std::unique_ptr<TF_Session> createSession(TF_Graph* graph, const TF_SessionOptions* options);
     static std::unique_ptr<TF_SessionOptions> createSessionOptions();
 
+    static std::unique_ptr<TF_Session> loadSessionFromSavedModel(
+            const TF_SessionOptions* session_options,
+            const TF_Buffer* run_options,
+            const char* saved_model_dir,
+            const char* const* tags,
+            int ntags,
+            TF_Graph* graph);
+
+    static std::unique_ptr<TF_Buffer> createRunOptions();
+
     static std::unique_ptr<TF_Graph> createGraph();
     static std::unique_ptr<TF_ImportGraphDefOptions> createImportGraphDefOptions();
 
