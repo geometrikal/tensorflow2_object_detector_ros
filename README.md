@@ -33,7 +33,7 @@ git clone <repository_path>
 ```
 
 ### download tensorflow
-Create a `tensorflow` folder in the `thirdparty` folder and save the Tensorflow 2 C API folders (`include` and `lib`) inside
+Create a `tensorflow` folder inside a`thirdparty` folder at the source root. Save the Tensorflow 2 C API folders (`include` and `lib`) inside this folder.
 
 Download Tensorflow C API from https://www.tensorflow.org/install/lang_c
 
